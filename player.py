@@ -9,7 +9,25 @@ class Player:
         self.dogRelations = None
         self.mapPos = "0,0"
 
+    def updateHealth(self, newHealth):
+        self.health = newHealth
+        return self.health
 
+    def updateCannons(self, newCannons):
+        self.cannons = newCannons
+        return self.cannons
+
+    def updateCatRel(self, newCatRel):
+        self.catRelations = newCatRel
+        return self.catRelations
+
+    def updateDogRel(self, newDogRel):
+        self.dogRelations = newDogRel
+        return self.dogRelations
+
+    def updatePos(self, newPos):
+        self.mapPos = newPos
+        return self.mapPos
 
 
 
