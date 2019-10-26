@@ -21,18 +21,23 @@ class Map:
 
         for row in mapBoard:
             for counter in range((len(row))):
+                #Nothing there, only the deep blue sea...
                 if row[counter] is "b":
                     # print("| ", "0", " |", end="")
                     gameMapString += bcolors.OKBLUE + "| " + "0" + " | " + bcolors.ENDC
+                #Island
                 if row[counter] is "i":
                     # print("| ", "I", " |", end="")
                     gameMapString += bcolors.OKGREEN + "| " + "I" + " | " + bcolors.ENDC
+                #Dog ships
                 if row[counter] is "d":
                     # print("| ", "D", " |", end="")
                     gameMapString += bcolors.FAIL + "| " + "D" + " | " + bcolors.ENDC
+                #Cat ships
                 if row[counter] is "c":
                     # print("| ", "C", " |", end="")
                     gameMapString += bcolors.YELLOW + "| " + "C" + " | " + bcolors.ENDC
+                #Player starting position
                 if row[counter] is "p":
                     # print("| ", "P", " |", end="")
                     gameMapString += bcolors.BOLD + bcolors.MAGENTA + "| " + "P" + " | " + bcolors.ENDC

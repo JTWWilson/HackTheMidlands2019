@@ -1,21 +1,20 @@
 import random
 class Island:
     alignment = 0
-    timeTillNextShip =  15
+    timeTillNextShip = 15
 
-
-    def creation:
-        alignment = random.randint(1,4)
+    def __init__(self):
+        alignment = random.randint(1,2)
         if alignment == 1:
             alignment = 'N'
+            timeTillNextShip = -1
         elif alignment == 2:
             alignment = 'C'
         elif alignment == 3:
             alignment = 'D'
-        elif alignment == 4:
-            alignment = 'A'
-
-
 
     def __repr__(self):
         return Island.alignment
+
+    def open_shop(self, player):
+
