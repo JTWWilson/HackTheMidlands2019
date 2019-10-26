@@ -1,24 +1,14 @@
 <SailingGame>
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'game-assets/basecase_water.png'
     GridLayout:
         cols:1
         size: root.width, root.height
 
 
-        GridLayout:
-            cols:2
 
-            Label:
-                text: "Name: "
 
-            TextInput:
-                multinline: False
-
-            Label:
-                text: "Email: "
-
-            TextInput:
-                multinline:False
-
-        Button:
-            text: "Submit"
 
