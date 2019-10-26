@@ -3,7 +3,7 @@ class Island:
     alignment = 0
     time_till_next_ship = 15
 
-    def __init__(self):
+    def __init__(self, pos):
         alignment = random.randint(1,2)
         if alignment == 1:
             alignment = 'N'
@@ -12,9 +12,11 @@ class Island:
             alignment = 'C'
         elif alignment == 3:
             alignment = 'D'
+        self.pos = pos
 
     def __repr__(self):
         return Island.alignment
 
     def open_shop(self, player):
+        pass
 

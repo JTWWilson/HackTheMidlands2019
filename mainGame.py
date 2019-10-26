@@ -6,8 +6,6 @@ from kivy.graphics.context_instructions import Color
 from kivy.graphics.vertex_instructions import Rectangle
 from kivy.uix.button import Button
 
-from player import Player
-
 Config.set('kivy', 'keyboard_mode', 'systemandmulti')
 
 from random import normalvariate, randrange
@@ -16,39 +14,74 @@ from kivy.uix.widget import Widget
 from kivy.core.window import Window
 from kivy.uix.gridlayout import GridLayout
 from kivy.app import App
-from kivy.uix.label import Label
-from kivy.lang.builder import Builder
 
+from ship import Ship
+from player import Player
+from Island import Island
+from map import Map
 
 CANNON_SIGMA = 5
 
 buttons_being_pressed = []
 
 class SailingGame(Widget):
-
-
     def __init__(self, **kwargs):
         super(SailingGame, self).__init__(**kwargs)
         self._keyboard = Window.request_keyboard(self._keyboard_closed, self, 'text')
         self._keyboard.bind(on_key_down=self._on_keyboard_down, on_key_up=self._on_keyboard_up)
+        self.run_game()
 
     def _on_keyboard_down(self, keyboard, keycode, text='', modifiers=''):
         if keycode[1] in ['w', 'a', 's', 'd']:
-            buttons_being_pressed.append(keycode)
+            buttons_being_pressed.append(keycode[1])
 
     def _on_keyboard_up(self, keyboard, keycode, text='', modifiers=''):
         if keycode[1] in ['w', 'a', 's', 'd']:
-            buttons_being_pressed.remove(keycode)
+            buttons_being_pressed.remove(keycode[1])
             print("button pushed")
 
     def _keyboard_closed(self):
         self._keyboard.unbind(on_key_down=self._on_keyboard_down)
         self._keyboard = None
 
+    def run_game(self):
+        print("run_game")
+        em1 = Ship(50, 2, "cat", 1)
+        em2 = Ship(50, 3, "dog", 2)
+        em3 = Ship(50, 4, "cat", 3)
+        em4 = Ship(50, 1, "dog", 1)
+        em5 = Ship(50, 5, "cat", 0)
+        em6 = Ship(50, 2, "dog", 0)
+        enemies = [em1, em2, em3, em4, em5, em6]
+
+        is1 = Island([1, 1])
+        is2 = Island([2, 1])
+        is3 = Island([2, 4])
+        is4 = Island([5, 3])
+        islands = [is1, is2, is3, is4]
+
+        player = Player()
+        gameMap = Map()
+
+        self.game_loop(player, enemies, gameMap, islands)
+
+    def game_loop(player, enemies, game_map, islands, game_module):
+        print("game_loop")
+        game_going = True
+        turns = 0
+
+        while (game_going):
+            # if (has_won(game_map, player)):
+            #     game_going = False
+            take_turn(game_map, player)
+            turns += 1
+            print(turns)
+
 
 def take_turn(game_map, player):
-    move = buttons_being_pressed[-1]
-    player.move(move)
+    if buttons_being_pressed:
+        move = buttons_being_pressed[-1]
+        player.move(move)
     if isinstance(game_map[player.x][player.y], Ship):
         if Ship.faction.relation[player] < 0:
             fight(player, game_map[player.x][player.y])
@@ -62,8 +95,8 @@ def take_turn(game_map, player):
             print('island defeated')
         else:
             fight(player, island)
-    print(game_map)
-
+    # print(game_map)
+    return game_map
 
 def has_won(game_map, player):
     return all(list([island.faction.relation[player] >= 0 for island in game_map.islands]))
@@ -85,6 +118,7 @@ def fight(player, enemy):
         enemy.sink()
 
 
+
 class GameApp(App):
     def build(self):
         game = SailingGame()
@@ -94,7 +128,6 @@ class GameApp(App):
 
         with layout.canvas:
             # Color(1.,0,0)
-
             for i in range(6):
                 # dont judge this - island randomisation
 
@@ -113,10 +146,7 @@ class GameApp(App):
 
             #Rectangle(source='game-assets/basecase_water.png', pos=(101,0))
             Rectangle(source=player.sprite, pos=(int(player.map_pos[0]), int(player.map_pos[1])), size=(150,150))
-
         return layout
-
-
 
 if __name__ == '__main__':
     GameApp().run()
