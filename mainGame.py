@@ -6,6 +6,8 @@ from kivy.graphics.context_instructions import Color
 from kivy.graphics.vertex_instructions import Rectangle
 from kivy.uix.button import Button
 
+from player import Player
+
 Config.set('kivy', 'keyboard_mode', 'systemandmulti')
 
 from random import normalvariate, randrange
@@ -23,6 +25,8 @@ CANNON_SIGMA = 5
 buttons_being_pressed = []
 
 class SailingGame(Widget):
+
+
     def __init__(self, **kwargs):
         super(SailingGame, self).__init__(**kwargs)
         self._keyboard = Window.request_keyboard(self._keyboard_closed, self, 'text')
@@ -84,6 +88,7 @@ def fight(player, enemy):
 class GameApp(App):
     def build(self):
         game = SailingGame()
+        player = Player()
         layout = GridLayout(cols=2)
         Window.size = (600, 600)
 
@@ -108,6 +113,7 @@ class GameApp(App):
                         #we should then add an island object to the array of islands
 
             #Rectangle(source='game-assets/basecase_water.png', pos=(101,0))
+            Rectangle(source=player.sprite, pos=(int(player.map_pos[0]), int(player.map_pos[1])), size=(150,150))
 
         return layout
 
