@@ -8,6 +8,7 @@ class Player:
         self.dog_relations = None
         self.map_pos = (0, 0)
         self.inventory = 100
+        self.sprite = 'game-assets/octocat.png'
 
     def take_damage(self, newHealth):
         self.health -= newHealth
