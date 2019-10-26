@@ -35,6 +35,8 @@ class SailingGame(Widget):
     def _on_keyboard_down(self, keyboard, keycode, text='', modifiers=''):
         if keycode[1] in ['w', 'a', 's', 'd']:
             buttons_being_pressed.append(keycode)
+            if keycode[1] = 'w':
+                player.moveUp(5)
 
     def _on_keyboard_up(self, keyboard, keycode, text='', modifiers=''):
         if keycode[1] in ['w', 'a', 's', 'd']:
