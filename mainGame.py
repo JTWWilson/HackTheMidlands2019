@@ -89,10 +89,24 @@ class GameApp(App):
 
         with layout.canvas:
             # Color(1.,0,0)
+
             for i in range(6):
+                # dont judge this - island randomisation
+
+                if i in(0, 2, 3, 5): #every other column
+                     islandPos = randrange(6)
+                else:
+                    islandPos = -1
+
                 for j in range(6):
                     print(Window.size)
                     Rectangle(source='game-assets/basecase_water.png', pos=(int((Window.size[0]/6) * i), int((Window.size[1]/6)*j)))
+                    if j == islandPos:
+                        #add island
+                        Rectangle(source='game-assets/island-1.png',
+                                  pos=(int((Window.size[0] / 6) * i), int((Window.size[1] / 6) * j)))
+                        #we should then add an island object to the array of islands
+
             #Rectangle(source='game-assets/basecase_water.png', pos=(101,0))
 
         return layout
