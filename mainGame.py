@@ -111,10 +111,10 @@ class GameApp(App):
                                   pos=(int((Window.size[0] / 6) * i), int((Window.size[1] / 6) * j)))
                         #we should then add an island object to the array of islands
 
-            #Rectangle(source='game-assets/basecase_water.png', pos=(101,0))
             Rectangle(source=player.sprite, pos=(int(player.map_pos[0]), int(player.map_pos[1])), size=(150,150))
 
-        return layout
+        game.add_widget(layout)
+        return game
 
 
 
