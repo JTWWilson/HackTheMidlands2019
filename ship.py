@@ -10,7 +10,7 @@ class Ship:
         return self.cannons
 
     def take_damage(self, hit_points):
-        self.health -= hit-points
+        self.health -= hit_points
 
     def get_health(self):
         return self.health
