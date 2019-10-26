@@ -41,9 +41,9 @@ class Player:
         self.map_pos[1] -= amount
 
     def move_left(self, amount):
-        self.map_pos[0] += amount
+        self.map_pos[0] -= amount
 
     def move_right(self, amount):
-        self.map_pos[0] -= amount
+        self.map_pos[0] += amount
 
 

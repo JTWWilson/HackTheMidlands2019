@@ -27,13 +27,22 @@ buttons_being_pressed = []
 class SailingGame(Widget):
     def __init__(self, **kwargs):
         super(SailingGame, self).__init__(**kwargs)
+        player = Player()
         self._keyboard = Window.request_keyboard(self._keyboard_closed, self, 'text')
         self._keyboard.bind(on_key_down=self._on_keyboard_down, on_key_up=self._on_keyboard_up)
         self.run_game()
 
     def _on_keyboard_down(self, keyboard, keycode, text='', modifiers=''):
         if keycode[1] in ['w', 'a', 's', 'd']:
-            buttons_being_pressed.append(keycode[1])
+            buttons_being_pressed.append(keycode)
+            if keycode[1] == 'w':
+                player.move_up(5)
+            elif keycode[1] == 'a':
+                player.move_left(5)
+            elif keycode[1] == 's':
+                player.move_down(5)
+            elif keycode[1] == 'd':
+                player.move_right(5)
 
     def _on_keyboard_up(self, keyboard, keycode, text='', modifiers=''):
         if keycode[1] in ['w', 'a', 's', 'd']:
