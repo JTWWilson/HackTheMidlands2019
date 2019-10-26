@@ -5,34 +5,29 @@ from random import normalvariate, randrange
 from math import floor
 from kivy.uix.widget import Widget
 from kivy.core.window import Window
-from kivy.uix.label import Label
-
+from kivy.uix.gridlayout import GridLayout
 from kivy.app import App
+from kivy.uix.label import Label
+from kivy.lang.builder import Builder
 
 CANNON_SIGMA = 5
 
 buttons_being_pressed = []
 
-
-
-
 class SailingGame(Widget):
-
     def __init__(self, **kwargs):
         super(SailingGame, self).__init__(**kwargs)
         self._keyboard = Window.request_keyboard(self._keyboard_closed, self, 'text')
-
         self._keyboard.bind(on_key_down=self._on_keyboard_down, on_key_up=self._on_keyboard_up)
 
     def _on_keyboard_down(self, keyboard, keycode, text='', modifiers=''):
         if keycode[1] in ['w', 'a', 's', 'd']:
             buttons_being_pressed.append(keycode)
-            print("up")
 
     def _on_keyboard_up(self, keyboard, keycode, text='', modifiers=''):
         if keycode[1] in ['w', 'a', 's', 'd']:
             buttons_being_pressed.remove(keycode)
-            print("down")
+            print("button pushed")
 
     def _keyboard_closed(self):
         self._keyboard.unbind(on_key_down=self._on_keyboard_down)
@@ -81,8 +76,19 @@ def fight(player, enemy):
 class GameApp(App):
     def build(self):
         game = SailingGame()
-        # Label(text='Hello world')
-        return game
+        layout = GridLayout(cols=2)
+        Builder.load_file('game.kv')
+        # layout.add_widget(Button(text='Hello 1'))
+        # layout.add_widget(Button(text='World 1'))
+        # layout.add_widget(Button(text='Hello 2'))
+        # layout.add_widget(Button(text='World 2'))
+        layout.add_widget(Label(text='Hello world', font_size='60sp'))
+        layout.add_widget(Label(text='Hello world', font_size='60sp'))
+        layout.add_widget(Label(text='Hello world', font_size='60sp'))
+        layout.add_widget(self.ids.BackgroundLabel())
+
+        return layout
+
 
 
 if __name__ == '__main__':
