@@ -115,11 +115,13 @@ class GameApp(App):
                     islandPos = -1
 
                 for j in range(6):
-                    Rectangle(source='game-assets/basecase_water.png', pos=(int((Window.size[0]/6) * i), int((Window.size[1]/6)*j)))
+                    Rectangle(source='game-assets/basecase_water.png', pos=(int((Window.size[0]/6) * i), int((Window.size[1]/6)*j)), size =((SCREEN_WIDTH/6), int(SCREEN_HEIGHT/6)))
                     if j == islandPos:
                         #add island
                         Rectangle(source='game-assets/island-1.png',
-                                  pos=(int((Window.size[0] / 6) * i), int((Window.size[1] / 6) * j)))
+                                  pos=(int((Window.size[0] / 6) * i), int((Window.size[1] / 6) * j)),
+
+                                  )
                         #we should then add an island object to the array of islands
 
             Rectangle(source=player.sprite, pos=(int(player.map_pos[0]), int(player.map_pos[1])), size=(150,150))
