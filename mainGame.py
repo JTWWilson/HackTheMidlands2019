@@ -1,11 +1,19 @@
+from kivy.config import Config
+Config.set('kivy', 'keyboard_mode', 'systemandmulti')
+
 from random import normalvariate, randrange
 from math import floor
 from kivy.uix.widget import Widget
 from kivy.core.window import Window
+from kivy.uix.label import Label
+
+from kivy.app import App
 
 CANNON_SIGMA = 5
 
 buttons_being_pressed = []
+
+
 
 
 class SailingGame(Widget):
@@ -16,13 +24,19 @@ class SailingGame(Widget):
 
         self._keyboard.bind(on_key_down=self._on_keyboard_down, on_key_up=self._on_keyboard_up)
 
-    def _on_keyboard_down(self, keyboard, keycode, text, modifiers):
-        if keycode in ['w', 'a', 's', 'd']:
+    def _on_keyboard_down(self, keyboard, keycode, text='', modifiers=''):
+        if keycode[1] in ['w', 'a', 's', 'd']:
             buttons_being_pressed.append(keycode)
+            print("up")
 
-    def _on_keyboard_up(self, keyboard, keycode, text, modifiers):
-        if keycode in ['w', 'a', 's', 'd']:
+    def _on_keyboard_up(self, keyboard, keycode, text='', modifiers=''):
+        if keycode[1] in ['w', 'a', 's', 'd']:
             buttons_being_pressed.remove(keycode)
+            print("down")
+
+    def _keyboard_closed(self):
+        self._keyboard.unbind(on_key_down=self._on_keyboard_down)
+        self._keyboard = None
 
 
 def take_turn(game_map, player):
@@ -67,5 +81,9 @@ def fight(player, enemy):
 class GameApp(App):
     def build(self):
         game = SailingGame()
-
+        # Label(text='Hello world')
         return game
+
+
+if __name__ == '__main__':
+    GameApp().run()
