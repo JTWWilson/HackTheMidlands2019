@@ -1,7 +1,6 @@
 
 class Player:
-    def __init__(self, playerName):
-        self.player_name = playerName
+    def __init__(self):
         self.health = 50
         self.cannons = 1
         self.moves =[]
