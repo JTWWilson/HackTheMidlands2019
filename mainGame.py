@@ -1,4 +1,11 @@
+from builtins import int
+
 from kivy.config import Config
+from kivy.core.image import Image
+from kivy.graphics.context_instructions import Color
+from kivy.graphics.vertex_instructions import Rectangle
+from kivy.uix.button import Button
+
 Config.set('kivy', 'keyboard_mode', 'systemandmulti')
 
 from random import normalvariate, randrange
@@ -9,6 +16,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.lang.builder import Builder
+
 
 CANNON_SIGMA = 5
 
@@ -75,10 +83,19 @@ def fight(player, enemy):
 
 class GameApp(App):
     def build(self):
-        # game = SailingGame()
-        # layout = GridLayout(cols=2)
-        # Builder.load_file('game.kv')
-        return SailingGame()
+        game = SailingGame()
+        layout = GridLayout(cols=2)
+        Window.size = (600, 600)
+
+        with layout.canvas:
+            # Color(1.,0,0)
+            for i in range(6):
+                for j in range(6):
+                    print(Window.size)
+                    Rectangle(source='game-assets/basecase_water.png', pos=(int((Window.size[0]/6) * i), int((Window.size[1]/6)*j)))
+            #Rectangle(source='game-assets/basecase_water.png', pos=(101,0))
+
+        return layout
 
 
 
