@@ -1,6 +1,7 @@
 
 class Player:
-    def __init__(self):
+    def __init__(self, playerName):
+        self.player_name = playerName
         self.health = 50
         self.cannons = 1
         self.moves =[]
@@ -8,7 +9,6 @@ class Player:
         self.dog_relations = None
         self.map_pos = (0,0)
         self.inventory = 100
-        self.sprite = "game-assets/octocat.png"
 
     def take_damage(self, newHealth):
         self.health -= newHealth
