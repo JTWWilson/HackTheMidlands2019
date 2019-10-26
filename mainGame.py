@@ -104,7 +104,6 @@ class GameApp(App):
                     islandPos = -1
 
                 for j in range(6):
-                    print(Window.size)
                     Rectangle(source='game-assets/basecase_water.png', pos=(int((Window.size[0]/6) * i), int((Window.size[1]/6)*j)))
                     if j == islandPos:
                         #add island
