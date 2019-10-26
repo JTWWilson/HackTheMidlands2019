@@ -46,4 +46,8 @@ class Ship:
             if random_direction == 1:
                 self.map_pos[0] = self.map_pos[0] + 1
             elif random_direction == 2:
-                self.map_pos = self.map_pos
+                self.map_pos[0] = self.map_pos[0] - 1
+            elif random_direction == 3:
+                self.map_pos[1] = self.map_pos[1] + 1
+            elif random_direction == 4:
+                self.map_pos[1] = self.map_pos[1] -1
