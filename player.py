@@ -7,7 +7,7 @@ class Player:
         self.moves =[]
         self.cat_relations = None
         self.dog_relations = None
-        self.map_pos = (0,0)
+        self.map_pos = (0, 0)
         self.inventory = 100
 
     def take_damage(self, newHealth):
