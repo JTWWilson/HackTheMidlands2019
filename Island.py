@@ -16,12 +16,13 @@ class Island:
         elif alignment == 3:
             #dog
             alignment = 'D'
-        elif alignment == 4
+        elif alignment == 4:
             #allied
             alignment = 'A'
 
     def __repr__(self):
-        return(alignment)
+        return Island.alignment
+
 
 
 
