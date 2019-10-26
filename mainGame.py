@@ -1,4 +1,4 @@
-from builtins import int
+from builtins import int, range
 
 from kivy.config import Config
 from kivy.core.image import Image
@@ -23,6 +23,8 @@ from kivy.lang.builder import Builder
 CANNON_SIGMA = 5
 
 buttons_being_pressed = []
+SCREEN_WIDTH = 600
+SCREEN_HEIGHT = 600
 
 class SailingGame(Widget):
 
@@ -99,7 +101,7 @@ class GameApp(App):
         game = SailingGame()
         player = Player()
         layout = GridLayout(cols=2)
-        Window.size = (600, 600)
+        Window.size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 
         with layout.canvas:
             # Color(1.,0,0)
