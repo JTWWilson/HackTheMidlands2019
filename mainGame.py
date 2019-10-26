@@ -75,19 +75,10 @@ def fight(player, enemy):
 
 class GameApp(App):
     def build(self):
-        game = SailingGame()
-        layout = GridLayout(cols=2)
-        Builder.load_file('game.kv')
-        # layout.add_widget(Button(text='Hello 1'))
-        # layout.add_widget(Button(text='World 1'))
-        # layout.add_widget(Button(text='Hello 2'))
-        # layout.add_widget(Button(text='World 2'))
-        layout.add_widget(Label(text='Hello world', font_size='60sp'))
-        layout.add_widget(Label(text='Hello world', font_size='60sp'))
-        layout.add_widget(Label(text='Hello world', font_size='60sp'))
-        layout.add_widget(self.ids.BackgroundLabel())
-
-        return layout
+        # game = SailingGame()
+        # layout = GridLayout(cols=2)
+        # Builder.load_file('game.kv')
+        return SailingGame()
 
 
 
