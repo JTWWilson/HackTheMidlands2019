@@ -32,22 +32,22 @@ class Ship:
         distance = sqrt((x_diff*x_diff) + (y_diff*y_diff))
         if distance <= self.anger_level:
             if fabs(x_diff) > fabs(y_diff):
-                if x > 0:
+                if 0 < x_diff < 119:
                     self.map_pos[0] = self.map_pos[0] + 1
-                else:
+                elif x_diff > 0:
                     self.map_pos[0] = self.map_pos[0] - 1
             else:
-                if y > 0:
+                if 0 < y_diff < 199:
                     self.map_pos[1] = self.map_pos[1] + 1
-                else:
+                elif y_diff >0:
                     self.map_pos[1] = self.map_pos[1] - 1
         else:
             random_direction = random.randint(1, 4)
-            if random_direction == 1:
+            if random_direction == 1 and self.map_pos[0] <199:
                 self.map_pos[0] = self.map_pos[0] + 1
-            elif random_direction == 2:
+            elif random_direction == 2 and self.map_pos[0] > 0:
                 self.map_pos[0] = self.map_pos[0] - 1
-            elif random_direction == 3:
+            elif random_direction == 3 and self.map_pos[1] < 199:
                 self.map_pos[1] = self.map_pos[1] + 1
-            elif random_direction == 4:
-                self.map_pos[1] = self.map_pos[1] -1
+            elif random_direction == 4 and self.map_pos[1] > 0:
+                self.map_pos[1] = self.map_pos[1] - 1

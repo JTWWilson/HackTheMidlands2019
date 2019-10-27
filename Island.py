@@ -2,8 +2,8 @@ import random
 class Island:
     alignment = 0
     time_till_next_ship = 15
-
-    def __init__(self, pos):
+    map_pos = [0,0]
+    def __init__(self, map_pos):
         alignment = random.randint(1,2)
         if alignment == 1:
             alignment = 'N'
@@ -12,7 +12,7 @@ class Island:
             alignment = 'C'
         elif alignment == 3:
             alignment = 'D'
-        self.pos = pos
+        self.map_pos = map_pos
 
     def __repr__(self):
         return Island.alignment
